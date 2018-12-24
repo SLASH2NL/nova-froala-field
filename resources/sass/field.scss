@@ -6,6 +6,7 @@ $fa-font-path: "/vendor/nova/fonts/font-awesome" !default;
 // Plugins
 @import "~froala-editor/css/third_party/embedly.min.css";
 @import "~froala-editor/css/third_party/spell_checker.css";
+@import "~froala-audio/froala-audio.css";
 
 .fr-view-modal {
   width: 75vw;

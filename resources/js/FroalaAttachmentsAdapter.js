@@ -22,6 +22,10 @@ class FroalaAttachmentsAdapter {
         return this.imageUploadUrl;
     }
 
+    get audioUploadUrl() {
+        return this.imageUploadUrl;
+    }
+
     get fileUploadUrl() {
         return this.imageUploadUrl;
     }

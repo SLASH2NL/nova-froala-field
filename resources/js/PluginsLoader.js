@@ -40,6 +40,15 @@ class PluginsLoader {
             }
         }
 
+        try {
+            await import(
+                /* webpackChunkName: "froala_audio.min" */
+                'froala-audio/froala-audio'
+            );
+        } catch(e) {
+            this.errorPluginLoadNotification('Froala audio')
+        }
+
         return true;
     }
 

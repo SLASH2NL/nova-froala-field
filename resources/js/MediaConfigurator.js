@@ -30,7 +30,8 @@ class MediaConfigurator {
             this.imageManagerLoadConfig,
             this.imageManagerDeleteConfig,
             this.videoUploadConfig,
-            this.fileUplaodConfig
+            this.audioUploadConfig,
+            this.fileUploadConfig
         );
     }
 
@@ -143,7 +144,22 @@ class MediaConfigurator {
         };
     }
 
-    get fileUplaodConfig() {
+    get audioUploadConfig() {
+        // Audio plugin reverses the params..
+        var audioUploadParams = {};
+        audioUploadParams[this._token] = "_token";
+        audioUploadParams[this.field.draftId] = "draftId";
+
+        return {
+            audioUploadURL: this.adapter.audioUploadUrl,
+
+            audioUploadParam: 'attachment',
+
+            audioUploadParams: audioUploadParams,
+        };
+    }
+
+    get fileUploadConfig() {
         return {
             // Set the file upload parameter.
             fileUploadParam: 'attachment',

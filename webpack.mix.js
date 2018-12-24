@@ -23,7 +23,9 @@ mix.setPublicPath(distPath)
            // Jquery loader plugin.
            new webpack.ProvidePlugin({
                $: "jquery",
-               jQuery: "jquery"
+               jquery: "jquery",
+               jQuery: "jquery",
+               "window.jQuery": "jquery",
            })
        ]
    });
