@@ -33,6 +33,8 @@ Then, you must publish _Font Awesome_ fonts for displaying editor buttons:
 php artisan vendor:publish --tag=nova-froala-field-fonts --provider=Froala\\NovaFroalaField\\FroalaFieldServiceProvider
 ```
 
+**\*** To use _Nova Froala Field_ with local **Nova@^2.0** installation and **Laravel@^5.8**, use **Nova Froala Field@^2.1**
+
 ## Usage
 
 Just use the `Froala\NovaFroalaField\Froala` field in your Nova resource:
@@ -280,6 +282,8 @@ Or set custom optimization options for any optimizer:
 ],
 ```
 
+> Image optimization currently supported only for local filesystems
+
 ### Upload Max Filesize
 
 You can set max upload filesize for attachments. If set to `null`, max upload filesize equals to _php.ini_ `upload_max_filesize` directive value.
@@ -342,6 +346,18 @@ Just click **Show Content**
 
 ![Index Field](docs/index-field.png)
 
+## License Key
+
+To setup your license key, uncomment `key` option in the config file and set `FROALA_KEY` environment variable
+
+```php
+// ...
+'options' => [
+    'key' => env('FROALA_KEY'),
+    // ...
+],
+```
+
 ## 3rd Party Integrations
 
 To enable a button that uses some a 3rd party service and needs additional script inluding, like: *Embed.ly*, *Aviary* or *SCAYT Web SpellChecker*, you should publish 3rd party scripts:
@@ -351,6 +367,14 @@ php artisan vendor:publish --tag=nova-froala-field-plugins --provider=Froala\\No
 ```
 
 Script will be dynamically imported when you enable `embedly` or `spellChecker` buttons or set `aviaryKey` api key.
+
+**Note**:
+
+> If you have any problems with loading 3rd party plugins, try to republish it
+
+```bash
+php artisan vendor:publish --tag=nova-froala-field-plugins --force
+```
 
 ## Advanced
 

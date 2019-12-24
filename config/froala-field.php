@@ -14,6 +14,8 @@ return [
     */
 
     'options' => [
+        // 'key' => env('FROALA_KEY'),
+
         'toolbarButtons' => [
             'bold',
             'italic',
@@ -87,6 +89,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | Optimize all uploaded images by default.
+    |
+    | * Currently not supported for cloud filesystems
     |
     */
 

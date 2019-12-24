@@ -2,6 +2,7 @@
 
 namespace Froala\NovaFroalaField\Tests;
 
+use Laravel\Nova\Nova;
 use Laravel\Nova\Trix\Attachment;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,7 @@ class TrixDriverUploadTest extends TestCase
         setUp as uplaodsSetUp;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->uplaodsSetUp();
 
@@ -59,10 +60,19 @@ class TrixDriverUploadTest extends TestCase
 
         $response = $this->storeArticle();
 
-        $response->assertJson([
-            'title' => 'Some title',
-            'content' => 'Some content',
-        ]);
+        if (version_compare(Nova::version(), '1.3.1') === -1) {
+            $response->assertJson([
+                'title' => 'Some title',
+                'content' => 'Some content',
+            ]);
+        } else {
+            $response->assertJson([
+                'resource' => [
+                    'title' => 'Some title',
+                    'content' => 'Some content',
+                ],
+            ]);
+        }
 
         $this->assertDatabaseHas((new Attachment)->getTable(), [
             'disk' => static::DISK,

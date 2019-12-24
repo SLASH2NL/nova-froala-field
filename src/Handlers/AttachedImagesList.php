@@ -5,7 +5,6 @@ namespace Froala\NovaFroalaField\Handlers;
 use Illuminate\Http\Request;
 use Froala\NovaFroalaField\Froala;
 use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\File\File;
 
 class AttachedImagesList
 {
@@ -37,10 +36,7 @@ class AttachedImagesList
         $Storage = Storage::disk($this->field->disk);
 
         foreach ($Storage->allFiles() as $file) {
-            if (! in_array(
-                (new File($Storage->path($file)))->guessExtension(),
-                ['jpeg', 'png', 'gif', 'bmp', 'svg']
-            )) {
+            if (! app()->runningUnitTests() and ! @getimagesize($Storage->url($file))) {
                 continue;
             }
 
